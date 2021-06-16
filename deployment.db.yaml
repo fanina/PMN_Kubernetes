@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: db
+  name: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: db
+    spec:
+      containers:
+      - image: mysql:5.7
+        name: mysql
+        ports:
+        - containerPort: 3306
+        resources: {}
+        env:
+          - name: MYSQL_DATABASE
+            value: exampledb
+          - name: MYSQL_USER
+            value: exampleuser
+          - name: MYSQL_PASSWORD
+            value: examplepass
+          - name: MYSQL_RANDOM_ROOT_PASSWORD
+            value: '1'
+status: {}
